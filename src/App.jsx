@@ -1,38 +1,23 @@
 import React, { Component } from 'react';
 import ChatBar from './ChatBar.jsx';
-import Message from './MessageList.jsx';
-import SystemMessage from './Message.jsx';
-
-class Loading extends Component {
-  constructor(props) {
-    super(props); 
-      this.state = {loading: true};
-    }
-
-    componentDidMount() {
-      setTimeout(() => {
-        this.setState({loading: false});
-      }, 3000)
-    }
-  
-  render() {
-    if (this.state.loading) {
-      return <h1>Loading...</h1>
-    } else {
-      return <App />
-    }
-  }
-}
+import Message from './Message.jsx';
+import MessageList from './MessageList.jsx';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+      this.state = {
+        currentUser: 'Anonymous',
+        messages: []
+      }
+  }
   render() {
     return (
       <div>
-        <Message />
-        <SystemMessage />
-        <ChatBar />
+        <MessageList messages={this.state.messages}/>
+        <ChatBar currentUser={this.state.currentUser}/>
       </div>
     );
   }
 }
-export default Loading;
+export default App;

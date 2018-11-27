@@ -1,13 +1,21 @@
 import React, {Component} from 'react';
+import Message from './Message.jsx';
 
-class Message extends React.Component {
-    render() {
+class MessageList extends Component {
+
+    render(){
+        const post = this.props.messages.map(post => {
+            return <Message
+            username={ post.username }
+            content={ post.content }/>
+        });
+
         return (
-            <div className="chatMessage">
-                <span className="message-username">PLACEHOLDER</span>
-                <span className="message-content">Woah woah woah</span>
-            </div>
-    )}
+            <section>
+                { post }
+            </section>
+        );
+    }
 }
 
-export default Message;
+export default MessageList; 
