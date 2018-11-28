@@ -12,7 +12,7 @@ class MessageList extends Component {
 
         return (
             <section>
-                { post }
+                {post}
             </section>
         );
     }

@@ -6,22 +6,25 @@ class ChatBar extends React.Component {
         this.state = {
             username: this.props.currentUser,
             content: ''
-        }
+        };
     }
 
     onUsername(event) {
         const usernameOld = this.state.username
         const username = event.target.value 
         this.setState({username})
-    }
+    };
 
     onContent(event) {
         this.setState({content: event.target.value})
-    }
+    };
 
-    enter(event) {
-
-    }
+    onEnter(event) {
+        if (event.key === "enter") {
+            this.props.sendMessage(this.state);
+            this.setState({content:''});
+        }
+    };
 
     render() {
         return (
@@ -37,7 +40,7 @@ class ChatBar extends React.Component {
                     placeholder="Press Enter to send your message"
                     value={this.state.content}
                     onChange={this.onContent.bind(this)}
-                    onKeyDown={this.enter.bind(this)}
+                    onKeyDown={this.onEnter.bind(this)}
                 />
             </footer>
     )}
