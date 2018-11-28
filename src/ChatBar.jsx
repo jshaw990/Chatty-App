@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import App from './App.jsx';
 
 class ChatBar extends React.Component {
     constructor(props) {
@@ -9,19 +10,19 @@ class ChatBar extends React.Component {
         };
     }
 
-    onUsername(event) {
+    handleOnUsername(event) {
         const usernameOld = this.state.username
         const username = event.target.value 
         this.setState({username})
     };
 
-    onContent(event) {
+    handleOnContent(event) {
         this.setState({content: event.target.value})
     };
 
-    onEnter(event) {
-        if (event.key === "enter") {
-            this.props.sendMessage(this.state);
+    handleOnEnter(event) {
+        if (event.key === "Enter") {
+            this.props.handleSendMessage(this.state);
             this.setState({content:''});
         }
     };
@@ -33,14 +34,14 @@ class ChatBar extends React.Component {
                     className="chatbar-username" 
                     placeholder={this.props.username} 
                     value={this.state.username} 
-                    onChange={this.onUsername.bind(this)}
+                    onChange={this.handleOnUsername.bind(this)}
                 />
                 <input 
                     className="chatbar-message" 
                     placeholder="Press Enter to send your message"
                     value={this.state.content}
-                    onChange={this.onContent.bind(this)}
-                    onKeyDown={this.onEnter.bind(this)}
+                    onChange={this.handleOnContent.bind(this)}
+                    onKeyDown={this.handleOnEnter.bind(this)}
                 />
             </footer>
     )}
